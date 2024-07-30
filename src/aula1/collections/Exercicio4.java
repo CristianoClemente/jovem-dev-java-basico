@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 
 public class Exercicio4 {
 	public static void main(String[] args) {
-		Exercico();
+		Exercicio();
 	}
 
-	private static void Exercico() {
+	private static void Exercicio() {
 		String frase = JOptionPane.showInputDialog("Digite uma Frase:");
 		String msg = "";
 		Map<Character, Integer> mapa = new HashMap<>();
