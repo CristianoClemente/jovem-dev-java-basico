@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
-public class Exercico4 {
+public class Exercicio4 {
 	public static void main(String[] args) {
 		Exercico();
 	}

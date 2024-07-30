@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.swing.JOptionPane;
 
-public class Exercico3 {
+public class Exercicio3 {
 	public static void main(String[] args) {
 		ArrayList<Integer> lista = new ArrayList<>();
 
