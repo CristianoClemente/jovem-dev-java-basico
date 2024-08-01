@@ -1,23 +1,33 @@
 package aula3.tratamentoerros.exceptions;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Exercicio3 {
+
+	private static Pessoa pessoa;
+
 	public static void main(String[] args) {
 
 		int num2 = 0;
 		int num1 = -1;
 		String nome1 = "ana";
-		String nome2 = null;
-
-		Pessoa pessoa = null;
+		pessoa = null;
+		List<String> lista = new ArrayList<>();
+		Iterator<String> iterator = lista.iterator();
 
 		try {
-			/// pessoa.Idade = pessoa.Soma(num1 );
-		} catch (IllegalArgumentException e) {
+			iterator.remove();
+
+		} catch (IllegalStateException e) {
+			System.out.println("Exceção -IllegalStateException-");
 			e.printStackTrace();
 		}
 
 		try {
 			String nome = pessoa.nome;
+			System.out.println(nome);
 		} catch (NullPointerException e) {
 			System.out.println("Exceção -NullPointerException-");
 			e.printStackTrace();
