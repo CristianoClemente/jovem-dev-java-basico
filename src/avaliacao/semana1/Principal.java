@@ -12,6 +12,22 @@ import avaliacao.semana1.model.ClientePremium;
 import avaliacao.semana1.model.ItemVenda;
 import avaliacao.semana1.model.Produto;
 
+
+
+
+//Ficou Faltando muitas coisas da Lista, tive dificuldades em quebrar os processos e iniciar.
+//Faltando fazer o Item 10
+//faltando item 11;
+//Faltando item 12
+//
+//E principalmente ficou faltando toda a parte Principal
+// Desculpa!!
+
+
+
+
+
+
 public class Principal {
 	public static void main(String[] args) {
 
