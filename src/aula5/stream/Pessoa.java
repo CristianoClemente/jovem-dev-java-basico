@@ -8,9 +8,15 @@ public class Pessoa {
 	private LocalDate dataNascimento;
 
 	public Pessoa(String nome, String telefone, LocalDate dataNascimento) {
-		super();
+		
 		this.nome = nome;
 		this.telefone = telefone;
+		this.dataNascimento = dataNascimento;
+	}
+
+	public Pessoa(String nome, LocalDate dataNascimento) {
+		super();
+		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 	}
 

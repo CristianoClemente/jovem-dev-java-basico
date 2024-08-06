@@ -1,19 +1,17 @@
 package aula5.stream;
 
 import java.time.LocalDate;
-
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class Exercicio4 {
+public class Exercicio5 {
 	public static void main(String[] args) {
-		new Exercicio4();
+
+		new Exercicio5();
 	}
 
-	public Exercicio4() {
-
+	public Exercicio5() {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 		Pessoa p1 = new Pessoa("Alan", "48998651548",
@@ -32,7 +30,7 @@ public class Exercicio4 {
 				LocalDate.parse("28/05/1992", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Pessoa p8 = new Pessoa("Carol", "Telefone8",
 				LocalDate.parse("28/06/1992", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		Pessoa p9 = new Pessoa("Beto", "Telefone9",
+		Pessoa p9 = new Pessoa("Alberto", "Telefone9",
 				LocalDate.parse("28/01/1992", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Pessoa p10 = new Pessoa("Taty", "Telefone10",
 				LocalDate.parse("28/10/1992", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -48,11 +46,8 @@ public class Exercicio4 {
 		pessoas.add(p9);
 		pessoas.add(p10);
 
-		pessoas.stream().map(t -> t).filter(t -> t.getDataNascimento().getMonthValue() == 5)
-				.sorted(Comparator.comparing(Pessoa::getNome))
-				.forEach(f -> System.out.println(f.getNome() + " " + f.getTelefone() + " "
-						+ f.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-
+		System.out.println(pessoas.stream().map(t -> t).filter(t -> t.getNome().endsWith("berto")).findFirst()
+				.orElseThrow(() -> new ZeroBertoException()).getNome());
 	}
 
 }
