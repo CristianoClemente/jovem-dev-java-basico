@@ -49,12 +49,10 @@ public class Desafio {
 		 */
 
 		String resultado = pessoas.stream().filter(p -> {
-			// Verifica se o nome começa com uma vogal
 			String nomeMaiusculo = p.getNome().toUpperCase();
 			boolean comecaComVogal = nomeMaiusculo.startsWith("A") || nomeMaiusculo.startsWith("E")
 					|| nomeMaiusculo.startsWith("I") || nomeMaiusculo.startsWith("O") || nomeMaiusculo.startsWith("U");
 
-			// Verifica se o ano de nascimento é bissexto
 			boolean anoBissexto = p.getDataNascimento().isLeapYear();
 
 			return comecaComVogal && anoBissexto;
