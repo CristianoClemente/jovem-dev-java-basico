@@ -3,6 +3,7 @@ package aula5.stream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,13 +33,12 @@ public class Desafio {
 
 	public List<String> filtraNomes(List<Pessoa> pessoas) {
 
-		List<String> nomes = pessoas.stream().filter(p -> p.getDataNascimento().isLeapYear()||comecaComVogal(p.getNome())
+		List<String> nomes = pessoas.stream()
+				.filter(p -> p.getDataNascimento().isLeapYear() || comecaComVogal(p.getNome()))
 				.map(Pessoa::getNome)
-				.sorted(Comparator.comparing(Pessoa::getNome).reversed())
-				.collect(Collectors.toList());
-
+				.sorted(Comparator.comparing(String::toString)
+				.reversed()).collect(Collectors.toList());
 		return nomes;
-
 	}
 
 	private static boolean comecaComVogal(String s) {
