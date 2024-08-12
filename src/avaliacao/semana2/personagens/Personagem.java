@@ -2,61 +2,77 @@ package avaliacao.semana2.personagens;
 
 import java.util.Random;
 
-import javax.swing.JOptionPane;
+import avaliacao.semana2.PersonagemDerrotadoException;
 
 public abstract class Personagem {
 
-	protected String nome;
-	protected int maxhp;
-	protected int hp;
-	protected int ataque;
-	protected int defesa;
+	private String nome;
+	private int maxhp;
+	private int hp;
+	private int ataque;
+	private int defesa;
 
 	public Personagem(String nome, int maxhp, int hp, int ataque, int defesa) {
-		super();
+
 		this.nome = nome;
 		this.maxhp = maxhp;
 		this.hp = hp;
 		this.ataque = ataque;
 		this.defesa = defesa;
+
 	}
 
-	public Personagem batalhar(Personagem inimigo) {
-		while (inimigo.hp <= 0) {
-			this.atacar(inimigo);
+	public void batalhar(Personagem op) throws PersonagemDerrotadoException {
+
+		int rodada = 0;
+
+		while (this.hp > 0 && op.hp > 0) {
+			rodada = rodada + 1;
+			System.out.println("Rodada " + rodada + "\n");
+			this.atacar(op);
+
 		}
-
-		return inimigo;
-
 	}
 
-	public Personagem atacar(Personagem inimigo) {
+	public void atacar(Personagem op) {
 		StringBuilder msg = new StringBuilder();
-		Random random = new Random();
-		int dado = random.nextInt(6);
-		int dano = (this.ataque + dado) - inimigo.defesa;
+		int dado = new Random().nextInt(5) + 1;
+		int dano = (this.ataque + dado) - op.defesa;
 
-		if (this.ataque + dado > inimigo.defesa) {
-			inimigo.hp = inimigo.hp - dano;
-			msg.append(this.nome.toUpperCase()).append(" ATAQUE\n ").append(" ATQ: ").append(this.ataque).append("  + ")
-					.append(dado).append(" = ").append(this.ataque + dado).append("\n").append(inimigo.nome)
-					.append(" DEF: ").append(inimigo.defesa).append("\n").append(inimigo.nome).append(" Dano de ")
-					.append(dano).append("\n");
+		if (this.ataque + dado > op.defesa) {
+			if ((op.hp - dano) < 1) {
+				op.hp = 0;
+			} else {
+				op.hp -= dano;
+			}
 
-			inimigo.hp = inimigo.hp - dano;
-
-			msg.append("\n ").append(inimigo.nome).append(" HP: ").append(inimigo.hp);
-
-			JOptionPane.showMessageDialog(null, msg);
+			msg.append("Ataque de ").append(this.nome.toUpperCase()).append(" ").append(this.ataque).append(" + ")
+					.append(dado).append("\n").append(op.nome).append(" dano ").append(dano).append("\n")
+					.append(op.nome).append(" ").append(op.hp).append("|").append(op.maxhp).append(" HP\n");
 
 		} else {
-			msg.append("ATAQUE FALHOU");
-			JOptionPane.showMessageDialog(null, msg);
-
-			return inimigo;
+			msg.append("O ataque ").append(this.nome).append(" Falhou!!\n");
 		}
 
-		return inimigo;
+		System.out.println(msg);
+
+		try {
+			if (op.hp > 0) {
+				op.atacar(this);
+			} else {
+				throw new PersonagemDerrotadoException(op, this);
+			}
+
+		} catch (PersonagemDerrotadoException e) {
+
+			e.getMessage();
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void setRestauraHp() {
+		this.hp = maxhp;
 	}
 
 	public String getNome() {
